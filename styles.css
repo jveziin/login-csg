@@ -9,38 +9,36 @@ html, body {
     width: 100%;
     height: 100%;
     overflow-x: hidden; /* Bloqueia o scroll horizontal */
+    min-height: 100vh; /* Garante que o fundo cubra toda a altura da tela */
 }
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #001f0f; /* Verde escuro baseado na cor principal */
+    background-color: #001f0f; /* Cor de fallback */
+    background-image: url('assets/img/fundo.png'); /* Imagem de fundo padrão */
+    background-size: cover; /* Cobrir toda a área */
+    background-position: center; /* Centralizar a imagem */
+    background-repeat: no-repeat; /* Evitar repetição */
+    background-attachment: fixed; /* Fixar o fundo para evitar movimento ao rolar */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     overflow: hidden;
     padding: 20px; /* Adiciona padding para evitar que o conteúdo encoste nas bordas */
+    position: relative; /* Para posicionar o overlay */
 }
 
-/* Efeito de fundo animado */
-.background-effect {
-    position: fixed; /* Fixa o fundo para evitar recarregamentos visíveis */
+/* Overlay escuro para escurecer levemente o fundo */
+body::before {
+    content: '';
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #001f0f, #00381a); /* Gradiente com tons próximos */
-    z-index: -1;
-    animation: animateBackground 10s infinite alternate;
-}
-
-@keyframes animateBackground {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(1.2);
-    }
+    background: rgba(0, 0, 0, 0.3); /* Overlay escuro com baixa opacidade */
+    z-index: -1; /* Coloca o overlay atrás do conteúdo */
 }
 
 /* Efeito de fade-in ao carregar a página */
@@ -255,11 +253,26 @@ body {
     }
 }
 
+/* Estilos do rodapé */
+.footer {
+    position: fixed;
+    bottom: 20px; /* Posição inicial */
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5); /* Texto com opacidade baixa */
+    z-index: 1; /* Garante que o rodapé fique acima do fundo */
+    opacity: 0; /* Inicialmente invisível */
+    animation: fadeIn 3s ease-in-out 1s forwards; /* Efeito fade-in com delay */
+}
+
 /* Media Queries para dispositivos móveis */
 @media (max-width: 480px) {
     body {
         padding: 10px; /* Reduz o padding para telas menores */
         overflow: hidden; /* Desabilita o scroll */
+        background-image: url('assets/img/fundom.png'); /* Imagem de fundo para mobile */
     }
 
     body::-webkit-scrollbar {
@@ -293,5 +306,10 @@ body {
 
     .signup-link {
         font-size: 0.8rem; /* Tamanho menor para o link de cadastro */
+    }
+
+    .footer {
+        font-size: 0.7rem; /* Tamanho menor para mobile */
+        bottom: 10px; /* Ajuste de posição para telas pequenas */
     }
 }

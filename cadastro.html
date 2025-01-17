@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cadastro CSG</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-effect"></div>
+    <div class="login-container fade-in border-transition"> <!-- Classe border-transition -->
+        <h1>Cadastre-se no CSG</h1>
+        <p class="subtitle">Crie sua conta e aproveite o melhor serviço do mundo</p>
+        <form class="login-form">
+            <div class="input-group">
+                <label for="username">Usuário</label>
+                <div class="input-wrapper">
+                    <input type="text" id="username" name="username" placeholder="Digite seu usuário" required>
+                    <div class="focus-line"></div>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <div class="input-wrapper">
+                    <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+                    <div class="focus-line"></div>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="password">Senha</label>
+                <div class="input-wrapper">
+                    <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+                    <div class="focus-line"></div>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="confirm-password">Confirme sua senha</label>
+                <div class="input-wrapper">
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirme sua senha" required>
+                    <div class="focus-line"></div>
+                </div>
+            </div>
+            <button type="submit">Cadastrar</button>
+        </form>
+        <p class="signup-link">Já tem uma conta? <a href="index.html">Faça login</a></p>
+        <a href="https://discord.gg/fwhPTsud" target="_blank" class="discord-logo fade-in-logo">
+            <img src="assets/img/discord-logo.png" alt="Logo do Discord">
+        </a>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

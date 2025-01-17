@@ -1,0 +1,297 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* Bloqueia o scroll horizontal */
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #001f0f; /* Verde escuro baseado na cor principal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    padding: 20px; /* Adiciona padding para evitar que o conteúdo encoste nas bordas */
+}
+
+/* Efeito de fundo animado */
+.background-effect {
+    position: fixed; /* Fixa o fundo para evitar recarregamentos visíveis */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #001f0f, #00381a); /* Gradiente com tons próximos */
+    z-index: -1;
+    animation: animateBackground 10s infinite alternate;
+}
+
+@keyframes animateBackground {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.2);
+    }
+}
+
+/* Efeito de fade-in ao carregar a página */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 3s ease-in-out forwards; /* Aumentado para 3 segundos */
+}
+
+/* Efeito de fade-out */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.fade-out {
+    animation: fadeOut 0.5s ease-in-out forwards; /* Adicionado "forwards" para manter a opacidade final */
+}
+
+/* Container do formulário de login */
+.login-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    width: 100%;
+    max-width: 350px; /* Tamanho reduzido da aba de login */
+    text-align: center;
+    z-index: 1;
+    opacity: 0; /* Inicialmente invisível para o fade-in */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
+    position: relative;
+    margin: 0 auto; /* Centraliza a aba de login */
+}
+
+.login-container:hover {
+    transform: translateY(-10px); /* Subida suave ao passar o mouse */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); /* Sombra mais intensa no hover */
+}
+
+.login-container h1 {
+    margin-bottom: 10px;
+    font-size: 1.8rem; /* Tamanho menor para mobile */
+    color: #00cf54; /* Verde vibrante */
+}
+
+.login-container .subtitle {
+    margin-bottom: 20px;
+    font-size: 0.9rem; /* Tamanho menor para mobile */
+    color: rgba(85, 85, 85, 0.7); /* Cinza com menos opacidade */
+}
+
+/* Estilos do formulário */
+.login-form .input-group {
+    margin-bottom: 15px; /* Espaçamento menor para mobile */
+    text-align: left;
+}
+
+.login-form .input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem; /* Tamanho menor para mobile */
+    color: #555;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.login-form .input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px; /* Tamanho de fonte fixo para evitar zoom no mobile */
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.login-form .input-group input:focus {
+    border-color: transparent; /* Remove a borda padrão ao focar */
+}
+
+/* Linha verde que dá uma volta ao redor da caixa de texto */
+.focus-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    pointer-events: none; /* Permite interação com o input */
+    opacity: 0; /* Inicialmente invisível */
+}
+
+.login-form .input-group input:focus ~ .focus-line {
+    opacity: 1;
+    animation: snakeBorder 2s linear forwards; /* Animação ao focar */
+}
+
+@keyframes snakeBorder {
+    0% {
+        clip-path: polygon(0 0, 0 0, 0 0, 0 0); /* Começa sem nada visível */
+    }
+    25% {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); /* Parte superior */
+    }
+    50% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); /* Lado direito */
+    }
+    75% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); /* Parte inferior */
+    }
+    100% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0); /* Completa a volta */
+    }
+}
+
+.focus-line::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #00cf54; /* Linha verde */
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+/* Estilo do botão (mais elegante) */
+.login-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #00cf54; /* Verde vibrante */
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #ffffff; /* Texto branco */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-form button:hover {
+    background-color: #00b34a; /* Verde mais escuro no hover */
+    transform: translateY(-2px); /* Efeito de levantar */
+}
+
+.login-form button:active {
+    transform: translateY(0); /* Efeito de pressionar */
+}
+
+/* Link de cadastro */
+.signup-link {
+    margin-top: 15px;
+    font-size: 0.9rem; /* Tamanho menor para mobile */
+    color: #555;
+}
+
+.signup-link a {
+    color: #00cf54; /* Verde vibrante */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.signup-link a:hover {
+    color: #00b34a; /* Verde mais escuro no hover */
+}
+
+/* Logo do Discord com fade-in */
+.discord-logo {
+    width: 30px; /* Tamanho ajustado */
+    height: 30px; /* Tamanho ajustado */
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0; /* Inicialmente invisível */
+    animation: fadeInLogo 1s ease-in-out 0.5s forwards; /* Delay de 0.5s */
+}
+
+.discord-logo a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.discord-logo img {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes fadeInLogo {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Media Queries para dispositivos móveis */
+@media (max-width: 480px) {
+    body {
+        padding: 10px; /* Reduz o padding para telas menores */
+        overflow: hidden; /* Desabilita o scroll */
+    }
+
+    body::-webkit-scrollbar {
+        display: none; /* Oculta a barra de scroll no Chrome, Safari e Opera */
+    }
+
+    .login-container {
+        padding: 15px; /* Reduz o padding interno */
+        max-width: 90%; /* Ajusta a largura máxima para telas pequenas */
+    }
+
+    .login-container h1 {
+        font-size: 1.5rem; /* Tamanho menor para o título */
+    }
+
+    .login-container .subtitle {
+        font-size: 0.8rem; /* Tamanho menor para o subtítulo */
+    }
+
+    .login-form .input-group label {
+        font-size: 0.8rem; /* Tamanho menor para os labels */
+    }
+
+    .login-form .input-group input {
+        font-size: 16px; /* Mantém o tamanho de fonte fixo para evitar zoom */
+    }
+
+    .login-form button {
+        font-size: 0.9rem; /* Tamanho menor para o botão */
+    }
+
+    .signup-link {
+        font-size: 0.8rem; /* Tamanho menor para o link de cadastro */
+    }
+}
